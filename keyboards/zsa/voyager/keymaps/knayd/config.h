@@ -25,7 +25,6 @@
 
 #define SERIAL_NUMBER "rdyG4/JaPan9"
 #define LAYER_STATE_16BIT
-#define COMBO_COUNT 4
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
