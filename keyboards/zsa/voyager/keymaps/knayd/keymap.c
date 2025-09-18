@@ -482,8 +482,6 @@ tap_dance_action_t tap_dance_actions[] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
   // Nav + Sym = Func
   state =  update_tri_layer_state(state, 1, 2, 3);
-  // Nav + Num = Mouse
-  state =  update_tri_layer_state(state, 1, 4, 5);
   return state;
 }
 
