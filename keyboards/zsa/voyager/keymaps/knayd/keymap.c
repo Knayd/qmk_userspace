@@ -29,7 +29,6 @@ enum custom_keycodes {
   ST_MACRO_0,
   ST_MACRO_1,
   DRAG_SCROLL,
-  DRAG_SCROLL,
 
   SW_WIN,  // Switch to next window (alt-tab)
   // Custom oneshot mod implementation with no timers.
