@@ -146,16 +146,6 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-const uint16_t PROGMEM combo0[] = { KC_LEFT, KC_UP, COMBO_END};
-const uint16_t PROGMEM combo1[] = { KC_DOWN, KC_RIGHT, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, KC_HOME),
-    COMBO(combo1, KC_END),
-};
-
-
-
 extern rgb_config_t rgb_matrix_config;
 
 RGB hsv_to_rgb_with_value(HSV hsv) {
