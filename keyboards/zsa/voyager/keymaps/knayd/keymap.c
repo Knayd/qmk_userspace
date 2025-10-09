@@ -226,6 +226,10 @@ bool rgb_matrix_indicators_user(void) {
     rgb_matrix_set_color(g_led_config.matrix_co[2][2], RGB_RED);
   }
 
+  if (os_mode_get() == OS_MAC) {
+    rgb_matrix_set_color(g_led_config.matrix_co[6][5], RGB_RED);
+  }
+
   return true;
 }
 
@@ -480,7 +484,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     #endif
 
-    process_nshot_state(keycode, record, false);
+    process_nshot_state(keycode, record, os_mode_get() == OS_MAC);
 
     update_swapper(
         &sw_win_active, KC_LEFT_ALT, KC_TAB, SW_WIN,
@@ -504,7 +508,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .default_key = KC_PGDN,
             .default_mods = MOD_LCTL,
             .mac_os_key = KC_RBRC,
-            .mac_os_mods = MOD_LSFT | MOD_LCTL
+            .mac_os_mods = MOD_LSFT | MOD_LGUI
         },
         keycode,
         record
@@ -516,7 +520,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .default_key = KC_PAGE_UP,
             .default_mods = MOD_LCTL,
             .mac_os_key = KC_LBRC,
-            .mac_os_mods = MOD_LSFT | MOD_LCTL
+            .mac_os_mods = MOD_LSFT | MOD_LGUI
         },
         keycode,
         record
@@ -534,7 +538,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .trigger = WIN_LEFT,
             .default_key = KC_LEFT,
             .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LGUI | MOD_LALT,
+            .mac_os_mods = MOD_LCTL | MOD_LALT,
         },
         keycode,
         record
@@ -545,7 +549,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .trigger = WIN_RIGHT,
             .default_key = KC_RIGHT,
             .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LGUI | MOD_LALT,
+            .mac_os_mods = MOD_LCTL | MOD_LALT,
         },
         keycode,
         record
@@ -556,7 +560,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .trigger = WIN_UP,
             .default_key = KC_UP,
             .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LGUI | MOD_LALT,
+            .mac_os_mods = MOD_LCTL | MOD_LALT,
         },
         keycode,
         record
@@ -567,7 +571,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .trigger = WIN_DOWN,
             .default_key = KC_DOWN,
             .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LGUI | MOD_LALT,
+            .mac_os_mods = MOD_LCTL | MOD_LALT,
         },
         keycode,
         record
@@ -578,7 +582,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .trigger = WIN_FULL,
             .default_key = KC_UP,
             .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LGUI | MOD_LALT,
+            .mac_os_mods = MOD_LCTL | MOD_LALT,
             .mac_os_key = KC_ENTER,
         },
         keycode,
@@ -590,7 +594,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .trigger = DESK_LEFT,
             .default_key = KC_LEFT,
             .default_mods = MOD_LGUI | MOD_LCTL,
-            .mac_os_mods = MOD_LGUI,
+            .mac_os_mods = MOD_LCTL,
         },
         keycode,
         record
@@ -601,7 +605,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .trigger = DESK_RIGHT,
             .default_key = KC_RIGHT,
             .default_mods = MOD_LGUI | MOD_LCTL,
-            .mac_os_mods = MOD_LGUI,
+            .mac_os_mods = MOD_LCTL,
         },
         keycode,
         record
