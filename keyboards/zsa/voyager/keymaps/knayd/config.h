@@ -24,7 +24,7 @@
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 8
 
 #define SERIAL_NUMBER "rdyG4/JaPan9"
-#define LAYER_STATE_16BIT
+#define LAYER_STATE_8BIT
 #define COMBO_COUNT 1
 #define HCS(report) host_consumer_send(record->event.pressed ? report : 0); return false
 
