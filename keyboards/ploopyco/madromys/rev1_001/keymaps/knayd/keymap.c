@@ -20,14 +20,14 @@
 bool caps_state = false;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT( MS_BTN4, MS_BTN5, DRAG_SCROLL, MS_BTN2,
-                    MS_BTN1,                        MS_BTN3 )
+    [0] = LAYOUT( MS_BTN3, MS_BTN4, MS_BTN5, DRAG_SCROLL,
+                    MS_BTN1,                        MS_BTN2 )
 };
 
-bool led_update_user(led_t led_state) {
-    if (caps_state != led_state.caps_lock) {
-        toggle_drag_scroll();
-        caps_state = led_state.caps_lock;
-    }
-    return true;
-}
+// bool led_update_user(led_t led_state) {
+//     if (caps_state != led_state.caps_lock) {
+//         toggle_drag_scroll();
+//         caps_state = led_state.caps_lock;
+//     }
+//     return true;
+// }
