@@ -20,7 +20,7 @@
 bool caps_state = false;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT( MS_BTN3, MS_BTN4, MS_BTN5, DRAG_SCROLL,
+    [0] = LAYOUT( MS_BTN3, MA_TOGG, MS_BTN5, DRAG_SCROLL,
                     MS_BTN1,                        MS_BTN2 )
 };
 
