@@ -8,5 +8,6 @@ CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
 POINTING_DEVICE_ENABLE = yes
 POINTING_DEVICE_DRIVER = navigator_trackball
+OS_DETECTION_ENABLE = yes
 VPATH += $(USER_PATH)
 SRC += $(wildcard $(USER_PATH)/*.c)
