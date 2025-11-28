@@ -135,7 +135,7 @@ const uint16_t PROGMEM combo_f10[] = { KC_P, MT(MOD_LGUI, KC_QUOTE), COMBO_END};
 const uint16_t PROGMEM combo_f11[] = { MO(2), LT(1, KC_SPACE), COMBO_END};
 const uint16_t PROGMEM combo_f12[] = { LT(3, KC_TAB), OSM(MOD_LSFT), COMBO_END};
 const uint16_t PROGMEM combo_enter[] = { KC_M, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM combo_delete[] = { KC_COMMA, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo_bscp[] = { KC_COMMA, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo_delete_wrd[] = { KC_M, KC_COMMA, KC_DOT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -154,7 +154,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_f10, KC_F10),
     COMBO(combo_f12, KC_F12),
     COMBO(combo_enter, KC_ENTER),
-    COMBO(combo_delete, KC_DELETE),
+    COMBO(combo_bscp, KC_BSPC),
     COMBO(combo_delete_wrd, DLT_WRD),
 };
 
