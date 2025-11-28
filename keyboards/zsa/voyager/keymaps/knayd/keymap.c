@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [1] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, LCTL(KC_W),     SW_WIN,         PREV_TAB,       NEXT_TAB,       KC_TRANSPARENT,                                     KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT,
-    DLT_WRD,        KC_TRANSPARENT,     KC_LEFT_ALT,    KC_LEFT_SHIFT,  KC_LEFT_CTRL,  KC_TRANSPARENT,                                  WRD_LEFT,       KC_LEFT,        KC_DOWN,        KC_RIGHT,       WRD_RIGHT,      KC_TRANSPARENT,
+    DLT_WRD,        KC_TRANSPARENT,     KC_LEFT_ALT,    KC_LEFT_SHIFT,  KC_LEFT_CTRL,  KC_TRANSPARENT,                                  KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT,
     LCTL(LSFT(KC_Z)),KC_PC_UNDO,     KC_PC_CUT,      KC_PC_COPY,     KC_PC_PASTE,    KC_TRANSPARENT,                                    TD(DANCE_3),    LALT(LCTL(KC_L)),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -122,6 +122,9 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 );
 
 const uint16_t PROGMEM combo_ctrl_clk[] = { KC_MS_BTN1, KC_LEFT_CTRL, COMBO_END};
+const uint16_t PROGMEM combo_wrd_left[] = { KC_LEFT, KC_DOWN, COMBO_END};
+const uint16_t PROGMEM combo_wrd_right[] = { KC_RIGHT, KC_DOWN, COMBO_END};
+const uint16_t PROGMEM combo_f11[] = { MO(2), LT(1, KC_SPACE), COMBO_END};
 const uint16_t PROGMEM combo0[] = { KC_Q, MT(MOD_LGUI, KC_A), COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_W, MT(MOD_LALT, KC_S), COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_E, MT(MOD_LSFT, KC_D), COMBO_END};
@@ -137,6 +140,9 @@ const uint16_t PROGMEM combo11[] = { KC_G, KC_B, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_ctrl_clk, CTRL_CLK),
+    COMBO(combo_wrd_left, WRD_LEFT),
+    COMBO(combo_wrd_right, WRD_RIGHT),
+    COMBO(combo_f11, KC_F11),
     COMBO(combo0, KC_F1),
     COMBO(combo1, KC_F2),
     COMBO(combo2, KC_F3),
