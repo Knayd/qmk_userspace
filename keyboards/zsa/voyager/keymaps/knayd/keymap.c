@@ -453,7 +453,7 @@ tap_dance_action_t tap_dance_actions[] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   // Nav + Mouse = Num
-  state =  update_tri_layer_state(state, 1, 3, 4);
+  state =  update_tri_layer_state(state, 1, 2, 4);
   return state;
 }
 
