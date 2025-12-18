@@ -2,7 +2,6 @@
 #include "version.h"
 #include "i18n.h"
 #include "print.h"
-#include "swapper.h"
 #include "magickey.h"
 #include "os_mode.h"
 #define MOON_LED_LEVEL LED_LEVEL
@@ -25,8 +24,6 @@ enum custom_keycodes {
   HSV_60_247_227,
   DRAG_SCROLL,
   TOGGLE_SCROLL,
-
-  SW_WIN,  // Switch to next window (alt-tab)
 
   // Magic keys
   DLT_WRD, // Delete word
@@ -77,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [2] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, LCTL(KC_W),     SW_WIN,         PREV_TAB,       NEXT_TAB,       KC_TRANSPARENT,                                     KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, LCTL(KC_W),     KC_TRANSPARENT, PREV_TAB,       NEXT_TAB,       KC_TRANSPARENT,                                     KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT,
     DLT_WRD,        KC_TRANSPARENT,     KC_LEFT_ALT,    KC_LEFT_SHIFT,  KC_LEFT_CTRL,  KC_TRANSPARENT,                                  KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT,
     LCTL(LSFT(KC_Z)),KC_PC_UNDO,     KC_PC_CUT,      KC_PC_COPY,     KC_PC_PASTE,    KC_TRANSPARENT,                                    TD(DANCE_3),    LALT(LCTL(KC_L)),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
@@ -225,23 +222,6 @@ bool rgb_matrix_indicators_user(void) {
   return true;
 }
 
-bool is_swapper_cancel_key(uint16_t keycode) {
-    switch (keycode) {
-    case KC_ESCAPE:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool is_key_with_delayed_mods(uint16_t keycode) {
-    switch (keycode) {
-    default:
-        return false;
-    }
-}
-
-bool sw_win_active = false;
 extern bool set_scrolling;
 extern bool navigator_turbo;
 extern bool navigator_aim;
@@ -460,11 +440,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #ifdef CONSOLE_ENABLE
         uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     #endif
-
-    update_swapper(
-        &sw_win_active, KC_LEFT_ALT, KC_TAB, SW_WIN,
-        keycode, record
-    );
 
     handle_magic_key(
         (magic_key_config_t){

@@ -32,13 +32,6 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_apps, KC_APPS),
 };
 
-bool is_key_with_delayed_mods(uint16_t keycode) {
-    switch (keycode) {
-    default:
-        return false;
-    }
-}
-
 // bool led_update_user(led_t led_state) {
 //     if (caps_state != led_state.caps_lock) {
 //         toggle_drag_scroll();
