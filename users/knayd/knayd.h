@@ -5,7 +5,7 @@
 #include "quantum_keycodes.h"
 #include "version.h"
 
-enum custom_keycodes {
+enum user_keycodes {
     DLT_WRD, // Delete word
     NEXT_TAB,
     PREV_TAB,

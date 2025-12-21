@@ -4,6 +4,7 @@
 #include "print.h"
 #include "magickey.h"
 #include "os_mode.h"
+#include "knayd.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -24,27 +25,6 @@ enum custom_keycodes {
   HSV_60_247_227,
   DRAG_SCROLL,
   TOGGLE_SCROLL,
-
-  // Magic keys
-  DLT_WRD, // Delete word
-  NEXT_TAB,
-  PREV_TAB,
-  KC_APPS, // Mission control / Task view
-  WRD_LEFT,
-  WRD_RIGHT,
-  // Win manager keys
-  WIN_LEFT,
-  WIN_RIGHT,
-  WIN_UP,
-  WIN_DOWN,
-  WIN_FULL,
-  DESK_LEFT,
-  DESK_RIGHT,
-  MON_LEFT,
-  MON_RIGHT,
-  SHOW_DESK,
-  // OS mode
-  OS_TOGGLE,
 };
 
 enum tap_dance_codes {
@@ -168,11 +148,6 @@ RGB hsv_to_rgb_with_value(HSV hsv) {
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
-
-bool process_detected_host_os_kb(os_variant_t detected_os) {
-    os_mode_init(detected_os);
-    return true;
- }
 
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [6] = { {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255} },
@@ -436,192 +411,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return state;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     #ifdef CONSOLE_ENABLE
         uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     #endif
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = DLT_WRD,
-            .default_key = KC_BSPC,
-            .default_mods = MOD_LCTL,
-            .mac_os_mods = MOD_LALT
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = NEXT_TAB,
-            .default_key = KC_PGDN,
-            .default_mods = MOD_LCTL,
-            .mac_os_key = KC_RBRC,
-            .mac_os_mods = MOD_LSFT | MOD_LGUI
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = PREV_TAB,
-            .default_key = KC_PAGE_UP,
-            .default_mods = MOD_LCTL,
-            .mac_os_key = KC_LBRC,
-            .mac_os_mods = MOD_LSFT | MOD_LGUI
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = KC_APPS,
-            .default_key = KC_TAB,
-            .default_mods = MOD_LGUI,
-            .mac_os_key = KC_UP,
-            .mac_os_mods = MOD_LCTL
-        },
-        keycode,
-        record
-    );
-
-    // Win manager keys
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = WIN_LEFT,
-            .default_key = KC_LEFT,
-            .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LCTL | MOD_LALT,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = WIN_RIGHT,
-            .default_key = KC_RIGHT,
-            .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LCTL | MOD_LALT,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = WIN_UP,
-            .default_key = KC_UP,
-            .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LCTL | MOD_LALT,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = WIN_DOWN,
-            .default_key = KC_DOWN,
-            .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LCTL | MOD_LALT,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = WIN_FULL,
-            .default_key = KC_UP,
-            .default_mods = MOD_LGUI,
-            .mac_os_mods = MOD_LCTL | MOD_LALT,
-            .mac_os_key = KC_ENTER,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = DESK_LEFT,
-            .default_key = KC_LEFT,
-            .default_mods = MOD_LGUI | MOD_LCTL,
-            .mac_os_mods = MOD_LCTL,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = DESK_RIGHT,
-            .default_key = KC_RIGHT,
-            .default_mods = MOD_LGUI | MOD_LCTL,
-            .mac_os_mods = MOD_LCTL,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = MON_LEFT,
-            .default_key = KC_LEFT,
-            .default_mods = MOD_LGUI | MOD_LSFT,
-            .mac_os_mods = MOD_LGUI | MOD_LALT | MOD_LCTL,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = MON_RIGHT,
-            .default_key = KC_RIGHT,
-            .default_mods = MOD_LGUI | MOD_LSFT,
-            .mac_os_mods = MOD_LGUI | MOD_LALT | MOD_LCTL,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = SHOW_DESK,
-            .default_key = KC_D,
-            .default_mods = MOD_LGUI,
-            .mac_os_key = KC_F11,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = WRD_LEFT,
-            .default_key = KC_LEFT,
-            .default_mods = MOD_LCTL,
-            .mac_os_mods = MOD_LALT,
-        },
-        keycode,
-        record
-    );
-
-    handle_magic_key(
-        (magic_key_config_t){
-            .trigger = WRD_RIGHT,
-            .default_key = KC_RIGHT,
-            .default_mods = MOD_LCTL,
-            .mac_os_mods = MOD_LALT,
-        },
-        keycode,
-        record
-    );
 
   switch (keycode) {
   case QK_MODS ... QK_MODS_MAX:
@@ -640,12 +433,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     }
     break;
-
-    case OS_TOGGLE:
-    if (record->event.pressed) {
-        os_mode_toggle();
-        return false;
-    }
 
     case DRAG_SCROLL:
       if (record->event.pressed) {
