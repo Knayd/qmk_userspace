@@ -6,7 +6,7 @@
 #include "version.h"
 
 enum user_keycodes {
-    DLT_WRD, // Delete word
+    DLT_WRD = SAFE_RANGE, // Delete word
     NEXT_TAB,
     PREV_TAB,
     KC_APPS, // Mission control / Task view
