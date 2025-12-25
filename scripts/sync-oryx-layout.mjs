@@ -97,7 +97,10 @@ fs.mkdirSync(targetDir, { recursive: true });
 
 const zip = new AdmZip(zipPath);
 zip.getEntries()
-  .filter(e => e.entryName.includes("_source/"))
+  .filter(e =>
+    e.entryName.includes("_source/") &&
+    !e.isDirectory
+  )
   .forEach(e => {
     const dest = path.join(
       targetDir,
