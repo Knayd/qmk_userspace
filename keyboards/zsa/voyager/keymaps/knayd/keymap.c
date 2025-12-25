@@ -1,10 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
-#include "print.h"
-#include "magickey.h"
-#include "os_mode.h"
-#include "knayd.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -26,6 +22,8 @@ enum custom_keycodes {
   DRAG_SCROLL,
   TOGGLE_SCROLL,
 };
+
+
 
 enum tap_dance_codes {
   DANCE_0,
@@ -53,23 +51,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     LT(2, KC_SPACE),KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [2] = LAYOUT_voyager(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, LCTL(KC_W),     KC_TRANSPARENT, PREV_TAB,       NEXT_TAB,       KC_TRANSPARENT,                                     KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT,
-    DLT_WRD,        KC_TRANSPARENT,     KC_LEFT_ALT,    KC_LEFT_SHIFT,  KC_LEFT_CTRL,  KC_TRANSPARENT,                                  KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT,
-    LCTL(LSFT(KC_Z)),KC_PC_UNDO,     KC_PC_CUT,      KC_PC_COPY,     KC_PC_PASTE,    KC_TRANSPARENT,                                    TD(DANCE_3),    LALT(LCTL(KC_L)),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, LCTL(KC_W),     KC_TRANSPARENT, LCTL(KC_PAGE_UP),LCTL(KC_PGDN),  KC_TRANSPARENT,                                 KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT_ALT,    KC_LEFT_SHIFT,  KC_LEFT_CTRL,   KC_TRANSPARENT,                                 KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT,
+    LCTL(LSFT(KC_Z)),KC_PC_UNDO,     KC_PC_CUT,      KC_PC_COPY,     KC_PC_PASTE,    KC_TRANSPARENT,                                 TD(DANCE_3),    LALT(LCTL(KC_L)),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [3] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, SHOW_DESK,      KC_APPS,        DRAG_SCROLL,    KC_LEFT_CTRL,   KC_MS_BTN3,                                     KC_TRANSPARENT, MON_LEFT,       WIN_UP,         MON_RIGHT,      KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_LALT,        KC_LSFT,        KC_LEFT_CTRL,   KC_MS_BTN1,     KC_MS_BTN2,                                     KC_TRANSPARENT, WIN_LEFT,       WIN_DOWN,       WIN_RIGHT,      KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_PC_UNDO,     KC_PC_CUT,      KC_PC_COPY,     KC_PC_PASTE,    TOGGLE_SCROLL,                                  KC_TRANSPARENT, DESK_LEFT,      DESK_RIGHT,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-                                                    KC_TRANSPARENT,     KC_TRANSPARENT,                                    WIN_FULL, KC_TRANSPARENT
+    KC_TRANSPARENT, KC_F11,         KC_TRANSPARENT, DRAG_SCROLL,    KC_LEFT_CTRL,   KC_MS_BTN3,                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_LEFT_ALT,    KC_LEFT_SHIFT,  KC_LEFT_CTRL,   KC_MS_BTN1,     KC_MS_BTN2,                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_PC_UNDO,     KC_PC_CUT,      KC_PC_COPY,     KC_PC_PASTE,    TOGGLE_SCROLL,                                  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [4] = LAYOUT_voyager(
-    EE_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, OS_TOGGLE,
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PLAY_PAUSE,KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_TRANSPARENT,                                 KC_ASTR,        KC_7,           KC_8,           KC_9,           KC_PLUS,        KC_TRANSPARENT,
-    KC_BSPC,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_SLASH,       KC_4,           KC_5,           KC_6,           KC_MINUS,       KC_TRANSPARENT,
+    EE_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_MEDIA_PLAY_PAUSE,KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_TRANSPARENT,                                 KC_ASTR,        KC_7,           KC_8,           KC_9,           KC_PLUS,        KC_TRANSPARENT,
+    KC_BSPC,        KC_LEFT_GUI,    KC_LEFT_ALT,    KC_LEFT_SHIFT,  KC_LEFT_CTRL,   KC_TRANSPARENT,                                 KC_SLASH,       KC_4,           KC_5,           KC_6,           KC_MINUS,       KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_0,           KC_1,           KC_2,           KC_3,           KC_DOT,         KC_EQUAL,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -97,43 +95,6 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-const uint16_t PROGMEM combo_wrd_left[] = { KC_LEFT, KC_DOWN, COMBO_END};
-const uint16_t PROGMEM combo_wrd_right[] = { KC_RIGHT, KC_DOWN, COMBO_END};
-const uint16_t PROGMEM combo_f1[] = { KC_Q, MT(MOD_LGUI, KC_A), COMBO_END};
-const uint16_t PROGMEM combo_f2[] = { KC_W, MT(MOD_LALT, KC_S), COMBO_END};
-const uint16_t PROGMEM combo_f3[] = { KC_E, MT(MOD_LSFT, KC_D), COMBO_END};
-const uint16_t PROGMEM combo_f4[] = { KC_R, MT(MOD_LCTL, KC_F), COMBO_END};
-const uint16_t PROGMEM combo_f5[] = { KC_T, KC_G, COMBO_END};
-const uint16_t PROGMEM combo_f6[] = { KC_Y, KC_H, COMBO_END};
-const uint16_t PROGMEM combo_f7[] = { KC_U, MT(MOD_LCTL, KC_J), COMBO_END};
-const uint16_t PROGMEM combo_f8[] = { KC_I, MT(MOD_LSFT, KC_K), COMBO_END};
-const uint16_t PROGMEM combo_f9[] = { KC_O, MT(MOD_LALT, KC_L), COMBO_END};
-const uint16_t PROGMEM combo_f10[] = { KC_P, MT(MOD_LGUI, KC_QUOTE), COMBO_END};
-const uint16_t PROGMEM combo_f11[] = { LT(2, KC_TAB), OSM(MOD_LSFT), COMBO_END};
-const uint16_t PROGMEM combo_f12[] = { LT(3, KC_ENTER), OSM(MOD_LSFT), COMBO_END};
-const uint16_t PROGMEM combo_enter[] = { KC_M, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM combo_bscp[] = { KC_COMMA, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo_delete_wrd[] = { KC_M, KC_COMMA, KC_DOT, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo_wrd_left, WRD_LEFT),
-    COMBO(combo_wrd_right, WRD_RIGHT),
-    COMBO(combo_f11, KC_F11),
-    COMBO(combo_f1, KC_F1),
-    COMBO(combo_f2, KC_F2),
-    COMBO(combo_f3, KC_F3),
-    COMBO(combo_f4, KC_F4),
-    COMBO(combo_f5, KC_F5),
-    COMBO(combo_f6, KC_F6),
-    COMBO(combo_f7, KC_F7),
-    COMBO(combo_f8, KC_F8),
-    COMBO(combo_f9, KC_F9),
-    COMBO(combo_f10, KC_F10),
-    COMBO(combo_f12, KC_F12),
-    COMBO(combo_enter, KC_ENTER),
-    COMBO(combo_bscp, KC_BSPC),
-    COMBO(combo_delete_wrd, DLT_WRD),
-};
 
 
 
@@ -188,10 +149,6 @@ bool rgb_matrix_indicators_user(void) {
     if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
       rgb_matrix_set_color_all(0, 0, 0);
     }
-  }
-
-  if (is_mac_os()) {
-    rgb_matrix_set_color(g_led_config.matrix_co[6][5], RGB_RED);
   }
 
   return true;
@@ -405,17 +362,7 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_5] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_5_finished, dance_5_reset),
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  // Sym + Nav = Num
-  state =  update_tri_layer_state(state, 1, 2, 4);
-  return state;
-}
-
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-    #ifdef CONSOLE_ENABLE
-        uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-    #endif
-
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
   case QK_MODS ... QK_MODS_MAX:
     // Mouse keys with modifiers work inconsistently across operating systems, this makes sure that modifiers are always
