@@ -108,13 +108,12 @@ zip.getEntries()
 
 /* ---------------- Commit ---------------- */
 
-// exec(`git config user.name "sync-script"`);
-// exec(`git config user.email "sync-script@local"`);
-
 exec("git add .");
 
 try {
   exec(`git commit -m "✨(oryx): ${changeDescription}"`);
+  exec(`git checkout main`);
+  exec(`git merge -Xignore-all-space oryx`);
 } catch {
   console.log("No layout change");
 }
