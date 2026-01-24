@@ -11,7 +11,7 @@ typedef struct {
     uint8_t mac_os_mods;  // Optional
 } magic_key_config_t;
 
-void handle_magic_key(
+bool handle_magic_key(
     magic_key_config_t config,
     uint16_t keycode,
     keyrecord_t *record

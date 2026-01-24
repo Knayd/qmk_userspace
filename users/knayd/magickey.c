@@ -1,12 +1,12 @@
 #include "magickey.h"
 #include "os_mode.h"
 
-void handle_magic_key(
+bool handle_magic_key(
     magic_key_config_t config,
     uint16_t keycode,
     keyrecord_t *record
 ) {
-    if (keycode != config.trigger) return;
+    if (keycode != config.trigger) return true;
 
     bool is_mac = is_mac_os();
     uint16_t key = (is_mac && config.mac_os_key) ? config.mac_os_key : config.default_key;
@@ -25,4 +25,6 @@ void handle_magic_key(
             send_keyboard_report();
         }
     }
+
+    return false;
 }
