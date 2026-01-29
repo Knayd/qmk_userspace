@@ -27,9 +27,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM combo_apps[] = { DRAG_SCROLL, MS_BTN1, COMBO_END};
+const uint16_t PROGMEM combo_mon_right[] = { DESK_RIGHT, DRAG_SCROLL, COMBO_END};
+const uint16_t PROGMEM combo_mon_left[] = { DESK_LEFT, MS_BTN3, COMBO_END};
+const uint16_t PROGMEM combo_win_up[] = { DESK_LEFT, DESK_RIGHT, COMBO_END};
+const uint16_t PROGMEM combo_win_down[] = { MS_BTN1, MS_BTN2, COMBO_END};
+const uint16_t PROGMEM combo_win_left[] = { MS_BTN1, MS_BTN3, COMBO_END};
+const uint16_t PROGMEM combo_win_right[] = { DRAG_SCROLL, MS_BTN2, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_apps, KC_APPS),
+    COMBO(combo_mon_right, MON_RIGHT),
+    COMBO(combo_mon_left, MON_LEFT),
+    COMBO(combo_win_up, WIN_UP),
+    COMBO(combo_win_down, WIN_DOWN),
+    COMBO(combo_win_left, WIN_LEFT),
+    COMBO(combo_win_right, WIN_RIGHT),
 };
 
 // bool led_update_user(led_t led_state) {
