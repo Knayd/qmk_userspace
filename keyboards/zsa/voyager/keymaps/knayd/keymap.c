@@ -188,8 +188,14 @@ bool rgb_matrix_indicators_user(void) {
     }
   }
 
+  uint8_t os_indicator_index = g_led_config.matrix_co[6][5];
+
   if (is_mac_os()) {
-    rgb_matrix_set_color(g_led_config.matrix_co[6][5], RGB_RED);
+    rgb_matrix_set_color(os_indicator_index, RGB_RED);
+  }
+
+  if (is_linux_os()) {
+    rgb_matrix_set_color(os_indicator_index, RGB_GREEN);
   }
 
   return true;

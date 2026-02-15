@@ -1,4 +1,5 @@
 #include "knayd.h"
+#include "keycodes.h"
 #include "magickey.h"
 #include "os_mode.h"
 
@@ -50,7 +51,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .default_key = KC_TAB,
             .default_mods = MOD_LGUI,
             .mac_os_key = KC_UP,
-            .mac_os_mods = MOD_LCTL
+            .mac_os_mods = MOD_LCTL,
+            .linux_key = KC_W,
+            .linux_mods = MOD_LGUI,
         },
         keycode,
         record
@@ -109,6 +112,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .default_mods = MOD_LGUI,
             .mac_os_mods = MOD_LCTL | MOD_LALT,
             .mac_os_key = KC_ENTER,
+            .linux_key = KC_ENTER,
+            .linux_mods = MOD_LGUI,
         },
         keycode,
         record
