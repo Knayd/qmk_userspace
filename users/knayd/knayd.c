@@ -112,7 +112,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             .default_mods = MOD_LGUI,
             .mac_os_mods = MOD_LCTL | MOD_LALT,
             .mac_os_key = KC_ENTER,
-            .linux_key = KC_ENTER,
+            .linux_key = KC_PAGE_UP,
             .linux_mods = MOD_LGUI,
         },
         keycode,
