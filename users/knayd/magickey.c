@@ -8,9 +8,20 @@ bool handle_magic_key(
 ) {
     if (keycode != config.trigger) return true;
 
-    bool is_mac = is_mac_os();
-    uint16_t key = (is_mac && config.mac_os_key) ? config.mac_os_key : config.default_key;
-    uint8_t mods = is_mac ? config.mac_os_mods : config.default_mods;
+    uint16_t key;
+    uint8_t mods;
+
+    // Select key and mods based on OS
+    if (is_linux_os() && config.linux_key) {
+        key = config.linux_key;
+        mods = config.linux_mods;
+    } else if (is_mac_os() && config.mac_os_key) {
+        key = config.mac_os_key;
+        mods = config.mac_os_mods;
+    } else {
+        key = config.default_key;
+        mods = config.default_mods;
+    }
 
     if (record->event.pressed) {
         if(mods) {

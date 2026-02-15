@@ -9,6 +9,8 @@ typedef struct {
     uint8_t default_mods;  // Optional
     uint16_t mac_os_key;
     uint8_t mac_os_mods;  // Optional
+    uint8_t linux_key;  // Optional
+    uint8_t linux_mods;  // Optional
 } magic_key_config_t;
 
 bool handle_magic_key(
