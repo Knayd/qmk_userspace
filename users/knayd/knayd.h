@@ -25,5 +25,8 @@ enum user_keycodes {
     SHOW_DESK,
     // OS mode
     OS_TOGGLE,
+    // Screenshot / Screen Record
+    SCRN_SHOT,
+    SCRN_REC,
     NEW_SAFE_RANGE  //use "NEW_SAFE_RANGE" for keymap specific codes
 };

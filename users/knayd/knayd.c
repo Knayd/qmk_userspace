@@ -196,6 +196,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         record
     );
 
+    handle_magic_key(
+        (magic_key_config_t){
+            .trigger = SCRN_SHOT,
+            .default_key = KC_PSCR,
+            .mac_os_key = KC_4,
+            .mac_os_mods = MOD_LGUI | MOD_LSFT,
+        },
+        keycode,
+        record
+    );
+
+    handle_magic_key(
+        (magic_key_config_t){
+            .trigger = SCRN_REC,
+            .default_key = KC_R,
+            .default_mods = MOD_LGUI | MOD_LALT,
+            .mac_os_key = KC_5,
+            .mac_os_mods = MOD_LGUI | MOD_LSFT,
+            .linux_mods = MOD_LGUI | MOD_LSFT,
+        },
+        keycode,
+        record
+    );
+
     switch (keycode) {
         case OS_TOGGLE:
             if (record->event.pressed) {
