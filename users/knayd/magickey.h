@@ -5,12 +5,12 @@
 
 typedef struct {
     uint16_t trigger;
-    uint16_t default_key;
-    uint8_t default_mods;  // Optional
+    uint16_t windows_key;
+    uint8_t windows_mods;  
     uint16_t mac_os_key;
-    uint8_t mac_os_mods;  // Optional
-    uint8_t linux_key;  // Optional
-    uint8_t linux_mods;  // Optional
+    uint8_t mac_os_mods; 
+    uint8_t linux_key;  
+    uint8_t linux_mods;
 } magic_key_config_t;
 
 bool handle_magic_key(

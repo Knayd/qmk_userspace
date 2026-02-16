@@ -94,8 +94,8 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-const uint16_t PROGMEM combo_wrd_left[] = { KC_LEFT, KC_DOWN, COMBO_END};
-const uint16_t PROGMEM combo_wrd_right[] = { KC_RIGHT, KC_DOWN, COMBO_END};
+const uint16_t PROGMEM combo_wrd_left[] = { KC_LEFT, KC_HOME, COMBO_END};
+const uint16_t PROGMEM combo_wrd_right[] = { KC_RIGHT, KC_END, COMBO_END};
 const uint16_t PROGMEM combo_f1[] = { KC_Q, MT(MOD_LGUI, KC_A), COMBO_END};
 const uint16_t PROGMEM combo_f2[] = { KC_W, MT(MOD_LALT, KC_S), COMBO_END};
 const uint16_t PROGMEM combo_f3[] = { KC_E, MT(MOD_LSFT, KC_D), COMBO_END};

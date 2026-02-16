@@ -7,22 +7,15 @@ bool handle_magic_key(magic_key_config_t config, uint16_t keycode, keyrecord_t *
     uint16_t key;
     uint8_t  mods;
 
-    // Determine key
-    if (is_linux_os() && config.linux_key) {
+    if (is_linux_os()) {
         key = config.linux_key;
-    } else if (is_mac_os() && config.mac_os_key) {
-        key = config.mac_os_key;
-    } else {
-        key = config.default_key;
-    }
-
-    // Determine mods (independent from key)
-    if (is_linux_os() && config.linux_mods) {
         mods = config.linux_mods;
-    } else if (is_mac_os() && config.mac_os_mods) {
+    } else if (is_mac_os()) {
+        key = config.mac_os_key;
         mods = config.mac_os_mods;
     } else {
-        mods = config.default_mods;
+        key = config.windows_key;
+        mods = config.windows_mods;
     }
 
     if (record->event.pressed) {
