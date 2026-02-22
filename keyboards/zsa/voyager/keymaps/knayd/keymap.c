@@ -408,6 +408,10 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_6] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_6_finished, dance_6_reset),
 };
 
+bool get_speculative_hold(uint16_t keycode, keyrecord_t* record) {
+  return true;
+}
+
 layer_state_t layer_state_set_user(layer_state_t state) {
   // Sym + Nav = Num
   state =  update_tri_layer_state(state, 1, 2, 4);
