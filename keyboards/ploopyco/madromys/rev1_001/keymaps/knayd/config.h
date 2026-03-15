@@ -7,6 +7,9 @@
 
 #define COMBO_COUNT 8
 
+#define DEBOUNCE 30
+#define DEBOUNCE_TYPE sym_defer_pk
+
 #define OS_DETECTION_KEYBOARD_RESET
 
 // For reference:
