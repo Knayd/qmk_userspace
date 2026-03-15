@@ -16,10 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <stdbool.h>
+#include "quantum.h"
 #include QMK_KEYBOARD_H
 #include "knayd.h"
 
 bool caps_state = false;
+
+enum keymap_keycodes {
+    SCROLL_TOGGLE = NEW_SAFE_RANGE,
+};
+
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+    if (keycode == SCROLL_TOGGLE && record->event.pressed) {
+        toggle_drag_scroll();
+        return false;
+    }
+    return true;
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT( MS_BTN3, DESK_LEFT, DESK_RIGHT, DRAG_SCROLL,
@@ -33,6 +46,7 @@ const uint16_t PROGMEM combo_win_up[] = { DESK_LEFT, DESK_RIGHT, COMBO_END};
 const uint16_t PROGMEM combo_win_down[] = { MS_BTN1, MS_BTN2, COMBO_END};
 const uint16_t PROGMEM combo_win_left[] = { MS_BTN1, MS_BTN3, COMBO_END};
 const uint16_t PROGMEM combo_win_right[] = { DRAG_SCROLL, MS_BTN2, COMBO_END};
+const uint16_t PROGMEM combo_scroll_toggle[] = { MS_BTN3, DRAG_SCROLL, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_apps, KC_APPS),
@@ -42,6 +56,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_win_down, WIN_DOWN),
     COMBO(combo_win_left, WIN_LEFT),
     COMBO(combo_win_right, WIN_RIGHT),
+    COMBO(combo_scroll_toggle, SCROLL_TOGGLE),
 };
 
 // bool led_update_user(led_t led_state) {
