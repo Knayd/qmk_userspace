@@ -9,8 +9,6 @@
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   HSV_60_247_227,
-  DRAG_SCROLL,
-  TOGGLE_SCROLL,
 };
 
 
@@ -28,7 +26,7 @@ enum tap_dance_codes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           TD(DANCE_1),    KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT, 
+    KC_ESCAPE,      KC_MS_BTN3,     KC_MS_BTN2,     DRAG_SCROLL,    KC_MS_BTN1,     KC_5,                                           TD(DANCE_1),    KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT, 
     TD(DANCE_0),    KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           TD(DANCE_2),    
     KC_BSPC,        MT(MOD_LGUI, KC_A),MT(MOD_LALT, KC_S),MT(MOD_LSFT, KC_D),MT(MOD_LCTL, KC_F),KC_G,                                           KC_H,           MT(MOD_LCTL, KC_J),MT(MOD_LSFT, KC_K),MT(MOD_LALT, KC_L),MT(MOD_LGUI, KC_QUOTE),KC_SCLN,        
     KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_CAPS,        
@@ -36,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [1] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_DQUO,        KC_DLR,         KC_ASTR,                                        KC_PLUS,        KC_PERC,        KC_AMPR,        KC_PIPE,        KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_CIRC,        KC_HASH,        KC_DQUO,        KC_DLR,         KC_TRANSPARENT,                                 KC_ASTR,        KC_PERC,        KC_AMPR,        KC_PIPE,        KC_PLUS,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_MINUS,       KC_LABK,        KC_RABK,        KC_EQUAL,       KC_GRAVE,                                       KC_EXLM,        KC_LPRN,        KC_RPRN,        KC_COLN,        KC_UNDS,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_BSLS,        KC_LBRC,        KC_RBRC,        KC_AT,          KC_TRANSPARENT,                                 KC_TILD,        KC_LCBR,        KC_RCBR,        KC_TRANSPARENT, KC_QUES,        KC_TRANSPARENT, 
                                                     LT(2, KC_SPACE),KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
@@ -151,10 +149,6 @@ bool rgb_matrix_indicators_user(void) {
 
   return true;
 }
-
-extern bool set_scrolling;
-extern bool navigator_turbo;
-extern bool navigator_aim;
 
 
 typedef struct {
@@ -379,19 +373,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     break;
 
-    case DRAG_SCROLL:
-      if (record->event.pressed) {
-        set_scrolling = true;
-      } else {
-        set_scrolling = false;
-      }
-      return false;
-    case TOGGLE_SCROLL:
-      if (record->event.pressed) {
-        set_scrolling = !set_scrolling;
-      }
-      return false;
-    break;
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
