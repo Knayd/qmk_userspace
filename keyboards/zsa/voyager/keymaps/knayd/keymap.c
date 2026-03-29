@@ -1,3 +1,4 @@
+#include "modifiers.h"
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
@@ -409,7 +410,7 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 bool get_speculative_hold(uint16_t keycode, keyrecord_t* record) {
-  return true;
+  return (QK_MOD_TAP_GET_MODS(keycode) & (MOD_LALT | MOD_LGUI)) == 0;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
