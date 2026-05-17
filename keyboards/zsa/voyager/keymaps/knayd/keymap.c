@@ -110,6 +110,7 @@ const uint16_t PROGMEM combo_f12[] = { LT(3, KC_ENTER), KC_LSFT, COMBO_END};
 const uint16_t PROGMEM combo_enter[] = { KC_M, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM combo_bscp[] = { KC_COMMA, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo_delete_wrd[] = { KC_M, KC_COMMA, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo_left_click[] = { MT(MOD_LCTL, KC_F), KC_G, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_wrd_left, WRD_LEFT),
@@ -129,6 +130,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_enter, KC_ENTER),
     COMBO(combo_bscp, KC_BSPC),
     COMBO(combo_delete_wrd, DLT_WRD),
+    COMBO(combo_left_click, KC_MS_BTN1),
 };
 
 
