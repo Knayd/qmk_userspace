@@ -1,0 +1,5 @@
+CONSOLE_ENABLE = yes
+COMBO_ENABLE = yes
+OS_DETECTION_ENABLE = yes
+VPATH += $(USER_PATH)
+SRC += $(wildcard $(USER_PATH)/*.c)
