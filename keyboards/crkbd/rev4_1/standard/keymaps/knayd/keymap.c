@@ -59,9 +59,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_WIN] = LAYOUT_split_3x6_3_ex2(
-    _______,    SHOW_DESK,  KC_APPS,      _______,    KC_LEFT_CTRL, _______,  _______,          _______,  MON_LEFT, WIN_UP,     MON_RIGHT,  _______, _______, _______,
-    _______,    _______,    MS_BTN3,      MS_BTN2,    MS_BTN1,      _______,  _______,          _______,  WIN_LEFT, WIN_DOWN,   WIN_RIGHT,  _______, _______, _______,
-    EDIT_REDO,  EDIT_UNDO,  EDIT_CUT,     EDIT_COPY,  EDIT_PASTE,   _______,                              _______,  DESK_LEFT,  DESK_RIGHT, _______, _______, _______,
+    _______,    SHOW_DESK,  KC_APPS,      _______,    _______,      _______,  _______,          _______,  _______,  MON_LEFT,   WIN_UP,     MON_RIGHT,  _______, _______,
+    _______,    _______,    MS_BTN3,      MS_BTN2,    MS_BTN1,      _______,  _______,          _______,  _______,  WIN_LEFT,   WIN_DOWN,   WIN_RIGHT,  _______, _______,
+    EDIT_REDO,  EDIT_UNDO,  EDIT_CUT,     EDIT_COPY,  EDIT_PASTE,   _______,                              _______,  DESK_LEFT,  DESK_RIGHT, _______,    _______, _______,
                                                       _______,      _______,  _______,          WIN_FULL, _______,  _______
   ),
 
