@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3_ex2(
       KC_ESC,   KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_NO,                    KC_NO,      KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,               SCRN_SHOT,
       KC_BSPC,  LGUI_T(KC_A),   LALT_T(KC_S),   LSFT_T(KC_D),   LCTL_T(KC_F),   KC_G,           KC_NO,                    KC_NO,      KC_H,           LCTL_T(KC_J),   LSFT_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_QUOT),    KC_SCLN,
-      KC_TRNS,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                 KC_N,           KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,            KC_CAPS,
+      _______,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                 KC_N,           KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,            KC_CAPS,
                                                                 MO(_NUM),       LT(_NAV, KC_TAB),LT(_WIN, KC_ENT),        KC_LSFT,    LT(_SYM, KC_SPC),KC_NO
 
   ),
@@ -62,13 +62,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    SHOW_DESK,  KC_APPS,      _______,    KC_LEFT_CTRL, _______,  _______,          _______,  MON_LEFT, WIN_UP,     MON_RIGHT,  _______, _______, _______,
     _______,    _______,    MS_BTN3,      MS_BTN2,    MS_BTN1,      _______,  _______,          _______,  WIN_LEFT, WIN_DOWN,   WIN_RIGHT,  _______, _______, _______,
     EDIT_REDO,  EDIT_UNDO,  EDIT_CUT,     EDIT_COPY,  EDIT_PASTE,   _______,                              _______,  DESK_LEFT,  DESK_RIGHT, _______, _______, _______,
-                                                      _______,      _______,  _______,          _______,  _______,  _______
+                                                      _______,      _______,  _______,          WIN_FULL, _______,  _______
   ),
 
   [_NUM] = LAYOUT_split_3x6_3_ex2(
     _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, _______, _______,        _______, KC_ASTR,   KC_7,   KC_8, KC_9, KC_PLUS,  OS_TOGGLE,
     KC_BSPC, _______, _______, _______, _______, _______, _______,        _______, KC_SLASH,  KC_4,   KC_5, KC_6, KC_MINUS, _______,
-    _______, _______, _______, _______, _______, _______,                          KC_0,      KC_1,   KC_2, KC_3, KC_DOT,   KC_EQUAL,
+    QK_BOOT, _______, _______, _______, _______, _______,                          KC_0,      KC_1,   KC_2, KC_3, KC_DOT,   KC_EQUAL,
                                         _______, _______, _______,        _______, KC_0,      _______
   )
 };
@@ -122,7 +122,7 @@ combo_t key_combos[COMBO_COUNT] = {
 
 bool rgb_matrix_indicators_user(void) {
 
-  uint8_t os_indicator_index = g_led_config.matrix_co[4][0];
+  uint8_t os_indicator_index = g_led_config.matrix_co[0][0];
 
   if (is_mac_os()) {
     rgb_matrix_set_color(os_indicator_index, RGB_RED);
