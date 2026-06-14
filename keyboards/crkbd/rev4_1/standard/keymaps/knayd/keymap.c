@@ -37,10 +37,10 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3_ex2(
-      KC_ESC,   KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_NO,                    KC_NO,      KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,               SCRN_SHOT,
-      KC_BSPC,  LGUI_T(KC_A),   LALT_T(KC_S),   LSFT_T(KC_D),   LCTL_T(KC_F),   KC_G,           KC_NO,                    KC_NO,      KC_H,           LCTL_T(KC_J),   LSFT_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_QUOT),    KC_SCLN,
-      _______,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                 KC_N,           KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,            KC_CAPS,
-                                                                MO(_NUM),       LT(_NAV, KC_TAB),LT(_WIN, KC_ENT),        KC_LSFT,    LT(_SYM, KC_SPC),KC_NO
+      KC_ESC,   KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,             MS_BTN2,                    KC_VOLU,    KC_Y,             KC_U,           KC_I,           KC_O,           KC_P,               SCRN_SHOT,
+      KC_BSPC,  LGUI_T(KC_A),   LALT_T(KC_S),   LSFT_T(KC_D),   LCTL_T(KC_F),   KC_G,             MS_BTN1,                    KC_VOLD,    KC_H,             LCTL_T(KC_J),   LSFT_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_QUOT),    KC_SCLN,
+      _______,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                     KC_N,             KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,            KC_CAPS,
+                                                                MO(_NUM),       LT(_NAV, KC_TAB), LT(_WIN, KC_ENT),           KC_LSFT,    LT(_SYM, KC_SPC), KC_DEL 
 
   ),
 
@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_NUM] = LAYOUT_split_3x6_3_ex2(
-    _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, _______, _______,        _______, KC_ASTR,   KC_7,   KC_8, KC_9, KC_PLUS,  OS_TOGGLE,
-    KC_BSPC, _______, _______, _______, _______, _______, _______,        _______, KC_SLASH,  KC_4,   KC_5, KC_6, KC_MINUS, _______,
-    QK_BOOT, _______, _______, _______, _______, _______,                          KC_0,      KC_1,   KC_2, KC_3, KC_DOT,   KC_EQUAL,
+    _______, _______, _______, _______, _______, _______, _______,        _______, KC_ASTR,   KC_7,   KC_8, KC_9, KC_PLUS,  OS_TOGGLE,
+    _______, _______, _______, _______, _______, _______, _______,        _______, KC_SLASH,  KC_4,   KC_5, KC_6, KC_MINUS, _______,
+    QK_BOOT, _______, _______, _______, _______, _______,                          _______,   KC_1,   KC_2, KC_3, KC_DOT,   KC_EQUAL,
                                         _______, _______, _______,        _______, KC_0,      _______
   )
 };
@@ -92,12 +92,14 @@ const uint16_t PROGMEM combo_f7[] = { KC_U, MT(MOD_LCTL, KC_J), COMBO_END};
 const uint16_t PROGMEM combo_f8[] = { KC_I, MT(MOD_LSFT, KC_K), COMBO_END};
 const uint16_t PROGMEM combo_f9[] = { KC_O, MT(MOD_LALT, KC_L), COMBO_END};
 const uint16_t PROGMEM combo_f10[] = { KC_P, MT(MOD_LGUI, KC_QUOTE), COMBO_END};
-const uint16_t PROGMEM combo_f11[] = { LT(2, KC_TAB), KC_LSFT, COMBO_END};
-const uint16_t PROGMEM combo_f12[] = { LT(3, KC_ENTER), KC_LSFT, COMBO_END};
+const uint16_t PROGMEM combo_f11[] = { LT(_NAV, KC_TAB), LT(_SYM, KC_SPC), COMBO_END};
+const uint16_t PROGMEM combo_f12[] = { LT(_WIN, KC_ENT), KC_LSFT, COMBO_END};
 const uint16_t PROGMEM combo_enter[] = { KC_M, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM combo_bscp[] = { KC_COMMA, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo_delete_wrd[] = { KC_M, KC_COMMA, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo_left_click[] = { MT(MOD_LCTL, KC_F), KC_G, COMBO_END};
+const uint16_t PROGMEM combo_middle_click[] = { MS_BTN1, MS_BTN2, COMBO_END};
+const uint16_t PROGMEM combo_media_play[] = { KC_VOLD, KC_VOLU, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_wrd_left, WRD_LEFT),
@@ -118,11 +120,13 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_bscp, KC_BSPC),
     COMBO(combo_delete_wrd, DLT_WRD),
     COMBO(combo_left_click, MS_BTN1),
+    COMBO(combo_middle_click, MS_BTN3),
+    COMBO(combo_media_play, KC_MPLY),
 };
 
 bool rgb_matrix_indicators_user(void) {
 
-  uint8_t os_indicator_index = g_led_config.matrix_co[0][0];
+  uint8_t os_indicator_index = g_led_config.matrix_co[3][5];
 
   if (is_mac_os()) {
     rgb_matrix_set_color(os_indicator_index, RGB_RED);
