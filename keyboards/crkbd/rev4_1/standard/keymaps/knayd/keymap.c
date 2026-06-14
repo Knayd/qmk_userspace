@@ -16,6 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdbool.h>
+#include <stdint.h>
+#include "action.h"
 #include "keycodes.h"
 #include QMK_KEYBOARD_H
 #include "knayd.h"
@@ -26,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EDIT_CUT   LCTL(KC_X)
 #define EDIT_COPY  LCTL(KC_C)
 #define EDIT_PASTE LCTL(KC_V)
+#define LT_REP     LT(_NUM, KC_0)
 
 enum layers {
     _BASE,
@@ -39,8 +43,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3_ex2(
       KC_ESC,   KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,             MS_BTN2,                    KC_VOLU,    KC_Y,             KC_U,           KC_I,           KC_O,           KC_P,               SCRN_SHOT,
       KC_BSPC,  LGUI_T(KC_A),   LALT_T(KC_S),   LSFT_T(KC_D),   LCTL_T(KC_F),   KC_G,             MS_BTN1,                    KC_VOLD,    KC_H,             LCTL_T(KC_J),   LSFT_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_QUOT),    KC_SCLN,
-      _______,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                     KC_N,             KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,            KC_CAPS,
-                                                                MO(_NUM),       LT(_NAV, KC_TAB), LT(_WIN, KC_ENT),           KC_LSFT,    LT(_SYM, KC_SPC), KC_DEL 
+      KC_DEL,   KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                     KC_N,             KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,            KC_CAPS,
+                                                                LT_REP,         LT(_NAV, KC_TAB), LT(_WIN, KC_ENT),           KC_LSFT,    LT(_SYM, KC_SPC), QK_REP 
 
   ),
 
@@ -124,6 +128,11 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_media_play, KC_MPLY),
 };
 
+bool remember_last_key_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
+  if (keycode == LT_REP) { return false; }
+  return true;
+}
+
 bool rgb_matrix_indicators_user(void) {
 
   uint8_t os_indicator_index = g_led_config.matrix_co[3][5];
@@ -143,5 +152,15 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     #ifdef CONSOLE_ENABLE
         uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
     #endif
+
+    switch (keycode) {
+      case LT_REP:
+        if (record->tap.count) {
+          repeat_key_invoke(&record->event);
+          return false;
+        }
+        break;
+    }
+
   return true;
 }
