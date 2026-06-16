@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,        _______, KC_ASTR,   KC_7,   KC_8, KC_9, KC_PLUS,  OS_TOGGLE,
     _______, _______, _______, _______, _______, _______, _______,        _______, KC_SLASH,  KC_4,   KC_5, KC_6, KC_MINUS, _______,
     QK_BOOT, _______, _______, _______, _______, _______,                          _______,   KC_1,   KC_2, KC_3, KC_DOT,   KC_EQUAL,
-                                        _______, _______, _______,        _______, KC_0,      _______
+                                        _______, _______, _______,        KC_0,    _______,   _______
   )
 };
 
@@ -131,6 +131,10 @@ combo_t key_combos[COMBO_COUNT] = {
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
   if (keycode == LT_REP) { return false; }
   return true;
+}
+
+bool get_speculative_hold(uint16_t keycode, keyrecord_t* record) {
+  return (QK_MOD_TAP_GET_MODS(keycode) & (MOD_LALT | MOD_LGUI)) == 0;
 }
 
 bool rgb_matrix_indicators_user(void) {
